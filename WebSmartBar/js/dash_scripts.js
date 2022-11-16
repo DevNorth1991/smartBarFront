@@ -12,13 +12,17 @@ const sideMenu = document.querySelector("#aside-dash");
 const menuBtnDash = document.getElementById("menu-btn-dash");
 const closeBtnDash = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
+const containerMain = document.querySelector("main");
+
+const templateQrView= document.getElementById("box-container-template").content;
+const fragment = document.createDocumentFragment();
+
 //end dashboard tags
 
 
 
 //*******************************************variables globales*****************************************//
 
-let arraySectoresDisponibles = [];
 
 let arrayMesasCombined=[];
 
@@ -105,9 +109,12 @@ const getSectores = async () => {
 
          const data = await res.json();
          console.log(data);
+         
+         let arraySectoresDisponibles = [];
 
          arraySectoresDisponibles = [...filterSector(data,"SecEs_Descripcion")];
          console.log(arraySectoresDisponibles);
+         pintarBox(arraySectoresDisponibles);
 
       } else if (res.status === 401) {
 
@@ -234,24 +241,30 @@ const filterMesa = (array, key) => {
 }
 
 
+const pintarBox = (data) => {
+   data.forEach(sector => {
 
+    // console.log(`el nombre del sector es : ${sector.Sec_Nombre}`);
+    templateQrView.querySelector('h1').textContent = sector.Sec_Nombre;
+    const clone = templateQrView.cloneNode(true);
+    fragment.appendChild(clone);
 
-const pintarBox=(arraySectoresDisponibles,arrayMesasCombined)=>{
-
-
-   //aqui pintamos toda la casa jaja 
-
-
-
+   })
+   containerMain.appendChild(fragment);
 }
- 
+
  
  //*************************************** end dash events************************************************//
 
  document.addEventListener('DOMContentLoaded', () => {
 
+  
    getSectores();
    getMesas();
+  
+
+   
+  
 
 
 })

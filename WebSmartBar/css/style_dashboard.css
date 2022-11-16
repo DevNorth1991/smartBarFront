@@ -19,6 +19,8 @@
     --color-info-light: #dce1eb;
     --color-dark: #363949;
     --color-light: rgba(132,139,200, 0.18);
+    --color-libre:forestgreen;
+    --color-reservada:gray;
     --color-primary-variant: #111e88;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
@@ -773,6 +775,102 @@ main .recent-orders a{
         display: none;
     }
 }
+
+/******************************************Estilos para vista generar Qr***************************************/
+
+
+main .generar-qr .insights .libre{
+
+    background: var(--color-libre);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     justify-content: space-between; 
+
+}
+
+main .generar-qr .insights .libre .nameTable{
+
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    
+
+}
+
+
+main .generar-qr .insights .libre .iconTable{
+
+
+    width: 100px;
+    height: 100px;
+    background: url(../images/libre.png);
+
+}
+
+main .generar-qr .insights .libre .capacidad{
+
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+
+    
+
+}
+
+
+/*************************************   Mesa Reservada ******************************************/
+
+
+main .generar-qr .insights .reservada{
+
+    background: var(--color-reservada);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     justify-content: space-between; 
+
+}
+
+main .generar-qr .insights .reservada .nameTable{
+
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    
+
+}
+
+
+main .generar-qr .insights .reservada .iconTable{
+
+
+    width: 100px;
+    height: 100px;
+    background: url(../images/reservado.png);
+
+}
+
+main .generar-qr .insights .reservada .capacidad{
+
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+
+    
+
+}
+
+
+
+
+
+
+
+
+
 
 /* ======================Media queries 2 big mobile or small tablets========================*/
 
