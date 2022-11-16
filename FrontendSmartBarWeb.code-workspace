@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\WEB\\FRONTEND\\MAQUETACIONES\\responsive-website-restaurant"
+		},
+		{
+			"path": "..\\..\\WEB\\FRONTEND\\MAQUETACIONES\\Restaurant-web-master"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "FrontendSmartBarWeb"
+	}
+}

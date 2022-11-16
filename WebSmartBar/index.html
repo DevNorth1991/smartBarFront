@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Smart Bar</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Estilos  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- header section   -->
+
+    <header class="header">
+
+        <div id="menu-btn" class="fas fa-bars icons"></div>
+        <div id="search-btn" class="fas fa-search icons"></div>
+
+        <nav class="navbar">
+
+            <a href="#home">Inicio</a>
+            <a href="#menu">men&uacute;</a>
+            <a href="#about">Qui&eacute;nes Somos</a>
+            <span class="space">
+                <a href="#home" class="logo"><img src="images/barra.png" alt=""></a>
+            </span>
+            <a href="#reviews">Opiniones</a>
+            <a href="#contact">Reservas</a>
+            <a href="#blogs">blogs</a>
+            <a href="login.html">login</a>
+
+        </nav>
+
+
+        <a href="#" class="fas fa-shopping-cart icons"> <span class="counter"><p id="showCounter">1</p></span></a>
+
+        <form action="" class="search-form">
+            <input type="search" name="" placeholder="search here..." id="search-box">
+            <label for="search-box" class="fas fa-search icons"></label>
+        </form>
+
+    </header>
+
+      <!-- *****************************tabla resumen carrito*******************  -->
+
+    <section class="carrito">
+
+    <div class="content">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acción</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody id="items"></tbody>
+        <tfoot>
+          <tr id="footer">
+            <th scope="row" colspan="5"></th>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="btn-buy"><button class="btn comprar">Realizar Pedido</button></div>
+
+    </div>
+
+<!--**********************template de tabla mas Footer************************ -->
+
+
+
+<template id="template-carrito">
+    <tr>
+      <th scope="row">id</th>
+      <td>Café</td>
+      <td>1</td>
+      <td>
+          <button class="btn btn-info btn-sm">
+              +
+          </button>
+          <button class="btn btn-danger btn-sm">
+              -
+          </button>
+      </td>
+      <td>$ <span>500</span></td>
+    </tr>
+  </template>
+  
+  
+  <template id="template-footer">
+      <th scope="row" colspan="2">Total productos</th>
+      <td>10</td>
+      <td>
+          <button class="btn btn-danger btn-sm trash" id="vaciar-carrito">
+              vaciar todo 
+          </button>
+      </td>
+      <td class="font-weight-bold">$ <span>5000</span></td>
+  </template>
+  
+
+    
+    
+    
+    </section>
+
+
+
+
+    <!-- header section ends  -->
+
+    <!-- home section starts  -->
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <img data-aos="fade-up" data-aos-delay="150" src="images/burger-baner.png" alt="">
+            <h3 data-aos="fade-up" data-aos-delay="300">La Mas Rica variedad de Sabores</h3>
+            <p data-aos="fade-up" data-aos-delay="450">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                at fuga aliquam ipsa recusandae repellat laudantium pariatur amet culpa cum.</p>
+            <a data-aos="fade-up" data-aos-delay="600" href="#menu" class="btn">Ver men&uacute;</a>
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- service sectioin starts  -->
+
+    <section class="service">
+
+        <div class="box" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-hamburger"></i>
+            <h3>La mejor calidad</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum.</p>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-shipping-fast"></i>
+            <h3>Delivery Gratis</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum.</p>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="450">
+            <i class="fas fa-headset"></i>
+            <h3>Atencion 24/7</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum.</p>
+        </div>
+
+    </section>
+
+    <!-- service sectioin ends -->
+
+
+
+    <!-- menu section starts  -->
+
+    <section class="menu" id="menu">
+
+        <div class="heading" id="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Nuestro men&uacute;</h3>
+        </div>
+
+        <div class="box-container">
+
+            <!-- template card de menu Item -->
+            <template id="template-card">
+                <div class="box" data-aos="fade-up" data-aos-delay="150">
+                    <img src="" alt="">
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3 class="name">cheese hamburger</h3>
+                        <div class="price">$29.99</div>
+                        <button class="btnAdd">Agregar al pedido</button>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+
+        <div class="heading" id="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Cervezas</h3>
+        </div>
+
+        <div class="box-container" id="container-drinks-1"> </div>
+
+
+        <!-- ********************************aguas y gaseosas **********************************************-->
+
+
+        <div class="heading" id="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Aguas y gaseosas</h3>
+        </div>
+
+        <div class="box-container" id="container-drinks-2"> </div>
+
+         <!-- ********************************  Postres **********************************************-->
+
+
+         <div class="heading" id="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Postres</h3>
+        </div>
+
+        <div class="box-container" id="container-postres"> </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- menu section ends -->
+
+    <!-- about section starts  -->
+
+    <section class="about" id="about">
+
+        <div class="image" data-aos="fade-right" data-aos-delay="150">
+            <img src="images/about-img.png" alt="">
+        </div>
+
+        <div class="content" data-aos="fade-left" data-aos-delay="300">
+            <h3 class="title">La hamburguesa perfecta!!</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, veniam error fugit quasi perspiciatis
+                blanditiis quo, sint beatae ut, commodi fuga illo reprehenderit ea voluptatibus earum fugiat obcaecati
+                doloremque? Aspernatur?</p>
+            <div class="icons">
+                <h3> <i class="fas fa-check"></i> El mejor precio </h3>
+                <h3> <i class="fas fa-check"></i> El mejor servicio </h3>
+                <h3> <i class="fas fa-check"></i> ingredientes frescos </h3>
+                <h3> <i class="fas fa-check"></i> sabores originales </h3>
+                <h3> <i class="fas fa-check"></i> seleccion de quesos </h3>
+                <h3> <i class="fas fa-check"></i> menu's vegetarianos </h3>
+            </div>
+            <a href="#" class="btn">leer mas</a>
+        </div>
+
+    </section>
+
+    <!-- about section ends -->
+
+    <!-- reviews section starts  -->
+
+    <section class="reviews" id="reviews">
+
+        <div class="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Clientes Contentos</h3>
+        </div>
+
+        <div class="box-container">
+
+            <div class="box" data-aos="fade-up" data-aos-delay="150">
+                <img src="images/pic-1.png" alt="">
+                <h3>Juana</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis qui accusamus autem! Veniam
+                    exercitationem adipisci in excepturi labore magni voluptatibus?</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <img src="images/pic-2.png" alt="">
+                <h3>Osmar</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis qui accusamus autem! Veniam
+                    exercitationem adipisci in excepturi labore magni voluptatibus?</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="450">
+                <img src="images/pic-3.png" alt="">
+                <h3>Maria</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis qui accusamus autem! Veniam
+                    exercitationem adipisci in excepturi labore magni voluptatibus?</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- reviews section ends -->
+
+    <!-- contact section starts  -->
+
+    <section class="contact" id="contact">
+
+        <div class="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Reserv&aacute; Tu Lugar</h3>
+        </div>
+
+        <div class="row">
+
+            <iframe data-aos="fade-up" data-aos-delay="150" class="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3296.2508839798484!2d-60.25181458476866!3d-34.29315014863877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b913bc90729f97%3A0xbd7213785d033c51!2sSirius%20cerveceria!5e0!3m2!1ses-419!2sar!4v1646556621945!5m2!1ses-419!2sar"
+                allowfullscreen="" loading="lazy"></iframe>
+            <!-- <iframe data-aos="fade-up" data-aos-delay="150" class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15076.89592087332!2d72.8319697277345!3d19.14167056419224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1639924799744!5m2!1sen!2sin"
+                allowfullscreen="" loading="lazy"></iframe> -->
+
+            <div class="form">
+
+                <div class="icons-container">
+
+                    <div class="icons" data-aos="fade-up" data-aos-delay="150">
+                        <i class="fas fa-map"></i>
+                        <h3>direcci&oacute;n :</h3>
+                        <p>Salto Buenos aires cp:2741 </p>
+                    </div>
+
+                    <div class="icons" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-envelope"></i>
+                        <h3>email :</h3>
+                        <p>blackOrange@gmail.com</p>
+                        <p>devNorth@gmail.com</p>
+                    </div>
+
+                    <div class="icons" data-aos="fade-up" data-aos-delay="450">
+                        <i class="fas fa-phone"></i>
+                        <h3>tel&eacute;fono:</h3>
+                        <p>+59 011248-241234</p>
+                        <p>+59-2474-451278</p>
+                    </div>
+
+                </div>
+
+                <form action="">
+                    <input data-aos="fade-up" data-aos-delay="150" type="text" placeholder="nombre completo"
+                        class="box">
+                    <input data-aos="fade-up" data-aos-delay="300" type="email" placeholder="email" class="box">
+                    <input data-aos="fade-up" data-aos-delay="450" type="number" placeholder="tel&eacute;fono"
+                        class="box">
+                    <input data-aos="fade-up" data-aos-delay="450" type="date" placeholder="fecha" class="box">
+                    <input data-aos="fade-up" data-aos-delay="450" type="time" placeholder="hora" class="box">
+                    <input data-aos="fade-up" data-aos-delay="450" type="number" placeholder="cantidad de personas"
+                        class="box">
+                    <textarea data-aos="fade-up" data-aos-delay="600" name=""
+                        placeholder="Motivo celebracion ...(opcional)" class="box" id="" cols="30" rows="10"></textarea>
+                    <input data-aos="fade-up" data-aos-delay="750" type="submit" value="Reservar" class="btn">
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- contact section ends -->
+
+    <!-- blogs section starts  -->
+
+    <section class="blogs" id="blogs">
+
+        <div class="heading">
+            <img src="images/title-img-2.png" alt="">
+            <h3>Tips Diarios!!!</h3>
+        </div>
+
+        <div class="box-container">
+
+            <div class="box" data-aos="fade-up" data-aos-delay="150">
+                <div class="image">
+                    <img src="images/blog-1.jpg" alt="">
+                    <div class="icons">
+                        <a href="#"> <i class="fas fa-calendar"></i> 21st may, 2022 </a>
+                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>titulo del blog aqui!</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, maxime.</p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <div class="image">
+                    <img src="images/blog-2.jpg" alt="">
+                    <div class="icons">
+                        <a href="#"> <i class="fas fa-calendar"></i> 21st may, 2022 </a>
+                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>titulo del blog aqui!</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, maxime.</p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="450">
+                <div class="image">
+                    <img src="images/blog-3.jpg" alt="">
+                    <div class="icons">
+                        <a href="#"> <i class="fas fa-calendar"></i> 21st may, 2022 </a>
+                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>titulo del blog aqui!.</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, maxime.</p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- blogs section ends -->
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="links">
+            <a href="#home" class="btn">Inicio</a>
+            <a href="#menu" class="btn">Men&uacute;</a>
+            <a href="#about" class="btn">Qui&eacute;nes Somos</a>
+            <a href="#reviews" class="btn">Opiniones</a>
+            <a href="#contact" class="btn">Reservas</a>
+            <a href="#blogs" class="btn">blogs</a>
+        </div>
+
+        <p class="credit"> creado por <span>Black Orange</span> | Todos Los derechos reservados! </p>
+
+    </section>
+
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- custom js file link      -->
+    <script src="js/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 800,
+        });
+    </script>
+
+</body>
+
+</html>
