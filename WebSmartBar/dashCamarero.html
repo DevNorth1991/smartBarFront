@@ -215,28 +215,33 @@
 
             <!-- inicio de generacion de qr  -->
 
-            <template id="box-container-template">
 
             <div class="generar-qr"   id="generar-qr">
 
                 <h1>Lista de mesas disponibles para generar QR</h1>
 
-                <div class="insights">
+                <div class="insights table-container">
 
                     <!-- ********start sales cards ********** -->
-                    <div class="sales libre">
-                       
-                        <div class="nameTable"> <h2>MI1</h2></div>
-                        <div class="iconTable"></div>
-                        <div class="capacidad"><h2>CAP.4</h2></div>
-                    </div>
-                    <div class="sales reservada">
+                     <!-- <div class="sales reservada">
                        
                         <div class="nameTable"><h2>MI2</h2></div>
                         <div class="iconTable"></div>
                         <div class="capacidad"><h2>CAP.2</h2></div>
+
                     </div>
-    
+
+                    <div class="sales libre">
+            
+                        <div class="nameTable">
+                            <h2 class="title-card">MI1</h2>
+                        </div>
+                        <div class="iconTable"></div>
+                        <div class="capacidad">
+                            <h2 class="footer-card">CAP.4</h2>
+                        </div>
+                    </div> -->
+     
                     <!-- ********end sales cards ********** -->
     
     
@@ -244,13 +249,25 @@
     
 
             </div>
-        </template>
+        
 
            
 
+        <template id="templateCardTable">
+
+            <div class="sales libre">
+            
+                <div class="nameTable">
+                    <h2 class="title-card">MI1</h2>
+                </div>
+                <div class="iconTable"></div>
+                <div class="capacidad">
+                    <h2 class="footer-card">CAP.4</h2>
+                </div>
+            </div>
+        </template>
+
             <!-- finde generacion de qr -->
-
-
           
 
 

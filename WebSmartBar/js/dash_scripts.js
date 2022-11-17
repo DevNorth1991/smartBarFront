@@ -1,9 +1,9 @@
 
 
 
-const apiGetSectores="http://localhost/SmartBarApi/Clases/GetResponse/ConsultarSectores.php";
+const apiGetSectores = "http://localhost/SmartBarApi/Clases/GetResponse/ConsultarSectores.php";
 
-const apiGetMesas="http://localhost/SmartBarApi/Clases/GetResponse/ConsultarObjetosGral.php";
+const apiGetMesas = "http://localhost/SmartBarApi/Clases/GetResponse/ConsultarObjetosGral.php";
 
 
 
@@ -12,10 +12,13 @@ const sideMenu = document.querySelector("#aside-dash");
 const menuBtnDash = document.getElementById("menu-btn-dash");
 const closeBtnDash = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
-const containerMain = document.querySelector("main");
+const containerTableQr = document.querySelector(".table-container");
 
-const templateQrView= document.getElementById("box-container-template").content;
+
+const templateCardTable = document.getElementById("templateCardTable").content
 const fragment = document.createDocumentFragment();
+
+
 
 //end dashboard tags
 
@@ -24,7 +27,7 @@ const fragment = document.createDocumentFragment();
 //*******************************************variables globales*****************************************//
 
 
-let arrayMesasCombined=[];
+let arrayMesasCombined = [];
 
 
 
@@ -36,50 +39,50 @@ let arrayMesasCombined=[];
 //show menu
 if (menuBtnDash) {
 
-    menuBtnDash.addEventListener('click', () => {
- 
-       sideMenu.style.display = 'block'
- 
-    });
- }
- 
- 
- //hide menu
- 
- if (closeBtnDash) {
-    closeBtnDash.addEventListener('click', () => {
- 
-       sideMenu.style.display = 'none'
- 
-    });
- 
- }
- 
- //change theme
- 
- if (themeToggler) {
-    themeToggler.addEventListener('click', (e) => {
- 
-       console.log(e.target);
-       console.log('aca deberia cambiar ');
-       document.body.classList.toggle('dark-theme-variables');
- 
-       themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
-       themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
- 
-       themeToggler.stopPropagation();
-    });
- 
-    
- 
- }
- 
- 
+   menuBtnDash.addEventListener('click', () => {
+
+      sideMenu.style.display = 'block'
+
+   });
+}
+
+
+//hide menu
+
+if (closeBtnDash) {
+   closeBtnDash.addEventListener('click', () => {
+
+      sideMenu.style.display = 'none'
+
+   });
+
+}
+
+//change theme
+
+if (themeToggler) {
+   themeToggler.addEventListener('click', (e) => {
+
+      console.log(e.target);
+      console.log('aca deberia cambiar ');
+      document.body.classList.toggle('dark-theme-variables');
+
+      themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
+      themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
+
+      themeToggler.stopPropagation();
+   });
+
+
+
+}
+
+
 //  //fill orders in table 
- 
+
 //  Orders.forEach(order => {
- 
- 
+
+
 //     const tr = document.createElement('tr');
 //     const trContent = `
 //     <td> ${order.productName}</td>
@@ -88,14 +91,14 @@ if (menuBtnDash) {
 //     <td class="${order.shipping === 'Declined' ? 'danger' :
 //           order.shipping === 'pending' ? 'warning' :
 //              'success'}">${order.shipping}</td>
- 
+
 //     <td class="primary">detalle</td>`
- 
+
 //     tr.innerHTML = trContent;
 //     document.querySelector('table tbody').appendChild(tr);
 //  });
- 
- 
+
+
 
 
 //***********************************************REQUEST SECTORES****************************************** */
@@ -109,12 +112,12 @@ const getSectores = async () => {
 
          const data = await res.json();
          console.log(data);
-         
+
          let arraySectoresDisponibles = [];
 
-         arraySectoresDisponibles = [...filterSector(data,"SecEs_Descripcion")];
-         console.log(arraySectoresDisponibles);
-         pintarBox(arraySectoresDisponibles);
+         arraySectoresDisponibles = [...filterSector(data, "SecEs_Descripcion")];
+         //console.log(arraySectoresDisponibles);
+
 
       } else if (res.status === 401) {
 
@@ -138,7 +141,6 @@ const getSectores = async () => {
 
 
 }
-
 
 //filtrado de sectores
 
@@ -165,6 +167,8 @@ const filterSector = (array, key) => {
 
 /*********************************************REQUEST MESAS************************************************ */
 
+
+
 const getMesas = async () => {
 
    try {
@@ -174,21 +178,19 @@ const getMesas = async () => {
 
          const data = await res.json();
          console.log(data);
-         let arrayMesasLibres= [];
-         let arrayMesasRservadas=[];
+         let arrayMesasLibres = [];
+         let arrayMesasRservadas = [];
 
-         arrayMesasLibres = [...filterMesa(data,"Libre")];
+         arrayMesasLibres = [...filterMesa(data, "Libre")];
          console.log(arrayMesasLibres);
 
-         arrayMesasRservadas = [...filterMesa(data,"Reservado")];
+         arrayMesasRservadas = [...filterMesa(data, "Reservado")];
          console.log(arrayMesasRservadas);
 
-         arrayMesasCombined=arrayMesasLibres.concat(arrayMesasRservadas);
+         arrayMesasCombined = arrayMesasLibres.concat(arrayMesasRservadas);
 
-         console.log(arrayMesasCombined);
-
-
-        
+         // console.log(arrayMesasCombined);
+         pintarCardTables(arrayMesasCombined);
 
       } else if (res.status === 401) {
 
@@ -241,30 +243,51 @@ const filterMesa = (array, key) => {
 }
 
 
-const pintarBox = (data) => {
-   data.forEach(sector => {
 
-    // console.log(`el nombre del sector es : ${sector.Sec_Nombre}`);
-    templateQrView.querySelector('h1').textContent = sector.Sec_Nombre;
-    const clone = templateQrView.cloneNode(true);
-    fragment.appendChild(clone);
+//pintar mesas dentro de generador de qr
+
+const pintarCardTables = (data) => {
+
+
+   data.forEach(mesa => {
+
+      templateCardTable.querySelector('.title-card').textContent = mesa.Obj_Codigo;
+      templateCardTable.querySelector('.footer-card').textContent = `CAP.${mesa.Obj_Capacidad}`;
+      console.log(`la mesa esta : ${mesa.ObjEs_Descripcion}`)
+
+      if (mesa.ObjEs_Descripcion == "Reservado") {
+
+         templateCardTable.querySelector("div.libre").classList.add("reservada");
+
+
+      }
+      const clone = templateCardTable.cloneNode(true);
+      fragment.appendChild(clone);
 
    })
-   containerMain.appendChild(fragment);
+   containerTableQr.appendChild(fragment);
+
+
 }
 
- 
- //*************************************** end dash events************************************************//
 
- document.addEventListener('DOMContentLoaded', () => {
 
-  
-   getSectores();
+
+
+
+
+
+//*************************************** end dash events************************************************//
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+   // getSectores();
    getMesas();
-  
 
-   
-  
+
+
+
 
 
 })
