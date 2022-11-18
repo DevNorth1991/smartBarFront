@@ -223,15 +223,17 @@
                 <div class="insights table-container">
 
                     <!-- ********start sales cards ********** -->
+
+
                      <!-- <div class="sales reservada">
-                       
-                        <div class="nameTable"><h2>MI2</h2></div>
+                    
+                        <div class="nameTable"><h2>MI2test</h2></div>
                         <div class="iconTable"></div>
                         <div class="capacidad"><h2>CAP.2</h2></div>
+                    
+                    </div>  -->
 
-                    </div>
-
-                    <div class="sales libre">
+                    <!-- <div class="sales libre">
             
                         <div class="nameTable">
                             <h2 class="title-card">MI1</h2>
@@ -240,7 +242,7 @@
                         <div class="capacidad">
                             <h2 class="footer-card">CAP.4</h2>
                         </div>
-                    </div> -->
+                    </div> --> 
      
                     <!-- ********end sales cards ********** -->
     
@@ -257,12 +259,12 @@
 
             <div class="sales libre">
             
-                <div class="nameTable">
+                <div class="sales nameTable">
                     <h2 class="title-card">MI1</h2>
                 </div>
-                <div class="iconTable"></div>
-                <div class="capacidad">
-                    <h2 class="footer-card">CAP.4</h2>
+                <div class="sales iconTable"></div>
+                <div class="sales capacidad">
+                    <h2 class="sales footer-card">CAP.4</h2>
                 </div>
             </div>
         </template>
@@ -419,7 +421,21 @@
 
         </div>
 
-        
+   <!-- ---------------------------------------------modal de Craecion de codigo qr--------------------------------------------- -->
+
+<section class="modal">
+
+    <div class="modal_container">
+
+        <img src="images/logo_smart.png" class="modal_img">
+        <h2 class="modal_title">¡¡Bienvenido!!</h2>
+        <div class="qr_container"></div>
+        <a href="#" class="modal_close">Cerrar Modal</a>
+
+    </div>
+
+
+</section>
 
 
 
@@ -430,11 +446,21 @@
 
     <!-- custom js file link      -->
     <!-- <script src="js/orders.js"></script> -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" 
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
     <script src="js/dash_scripts.js"></script>
     
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+   
+
+  
 
     <script>
         AOS.init({

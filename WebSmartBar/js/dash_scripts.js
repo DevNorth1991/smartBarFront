@@ -13,6 +13,9 @@ const menuBtnDash = document.getElementById("menu-btn-dash");
 const closeBtnDash = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
 const containerTableQr = document.querySelector(".table-container");
+const modal=document.querySelector(".modal");
+const modalClose=document.querySelector('.modal_close');
+const contenedorQr=document.querySelector('.qr_container');
 
 
 const templateCardTable = document.getElementById("templateCardTable").content
@@ -253,7 +256,7 @@ const pintarCardTables = (data) => {
 
       templateCardTable.querySelector('.title-card').textContent = mesa.Obj_Codigo;
       templateCardTable.querySelector('.footer-card').textContent = `CAP.${mesa.Obj_Capacidad}`;
-      console.log(`la mesa esta : ${mesa.ObjEs_Descripcion}`)
+     
 
       if (mesa.ObjEs_Descripcion == "Reservado") {
 
@@ -266,6 +269,65 @@ const pintarCardTables = (data) => {
 
    })
    containerTableQr.appendChild(fragment);
+
+
+}
+
+
+
+
+/***********************Agregamos Click al cpntenedor de mesas *************************** */
+
+containerTableQr.addEventListener('click', (e) => {
+
+   
+   if (e.target.classList.contains('sales')) {
+
+      console.log(e.target.classList);//de esta manera con solo un addEven Listener detectamos cualquier Click
+      generarEvent(e);
+   }
+   e.stopPropagation();
+})
+
+
+const generarEvent = e => {
+
+   if (e.target.classList.contains('sales')) {
+
+      generarQr(e.target.parentElement)//enviamos el contenido de la card al metodo generar qr 
+
+   }
+}
+
+
+
+//watsapp me ---->  https://wa.me/+542474512011?text=frontsmartbar.netlify.app
+//url para codigo qr file:///D:/BackUpIssd/TESIS/FrontendSmartBarWeb/WebSmartBar/index.html?CuenCod=MI11
+
+//var qrcode = new QRCode(contenedorQr)
+//otras propiedades de la libreria qrCode
+// qrcode.clear(); // clear the code.
+// qrcode.makeCode("http://naver.com"); // make another code
+
+var qrcode = new QRCode(contenedorQr)
+
+const generarQr = objeto => {
+
+   console.log(objeto)
+   modal.classList.add("modal--show");
+   qrcode.clear();
+
+   let url = "https://wa.me/+542474512011?text=frontsmartbar.netlify.app"
+   let CuenCod = objeto.querySelector('.title-card').textContent;
+   let fechaActual = '';
+
+   qrcode.makeCode(url);
+
+   modalClose.addEventListener('click', (e) => {
+      qrcode.clear();
+      e.preventDefault();
+      modal.classList.remove('modal--show');
+   })
 
 
 }
