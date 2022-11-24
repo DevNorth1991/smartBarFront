@@ -789,6 +789,11 @@ main .generar-qr .insights .libre{
 
 }
 
+main .generar-qr .insights .idMesa{
+
+    display: none;
+}
+
 main .generar-qr .insights .libre .nameTable{
 
     width: 90%;

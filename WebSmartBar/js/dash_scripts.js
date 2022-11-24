@@ -256,7 +256,8 @@ const pintarCardTables = (data) => {
 
       templateCardTable.querySelector('.title-card').textContent = mesa.Obj_Codigo;
       templateCardTable.querySelector('.footer-card').textContent = `CAP.${mesa.Obj_Capacidad}`;
-     
+      templateCardTable.querySelector('.idMesa').textContent = mesa.Obj_Id;
+   
 
       if (mesa.ObjEs_Descripcion == "Reservado") {
 
@@ -301,6 +302,18 @@ const generarEvent = e => {
 
 
 
+
+
+/*Json para poder pedir pedidos 
+
+{"CuenCod":"MI1-1-20221014170721",
+"ObjId":1,
+"ItemsMenu":[{"ItemMenuId":10,"Cantidad":2},
+            {"ItemMenuId":46,"Cantidad":1},
+            {"ItemMenuId":47,"Cantidad":1}]}
+*/
+
+
 //watsapp me ---->  https://wa.me/+542474512011?text=frontsmartbar.netlify.app
 //url para codigo qr file:///D:/BackUpIssd/TESIS/FrontendSmartBarWeb/WebSmartBar/index.html?CuenCod=MI11
 
@@ -315,14 +328,23 @@ const generarQr = objeto => {
 
    console.log(objeto)
    modal.classList.add("modal--show");
-   qrcode.clear();
+   // qrcode.clear();
 
-   let url = "https://wa.me/+542474512011?text=frontsmartbar.netlify.app"
+   let url = "https://wa.me/+542474512011?text=D:/BackUpIssd/TESIS/FrontendSmartBarWeb/WebSmartBar/index.html?CuenCod="
    let CuenCod = objeto.querySelector('.title-card').textContent;
-   let fechaActual = '';
+   let ObjId = objeto.querySelector('.idMesa').textContent;
+   let fechaActual = new Date().toISOString();//2022-11-20T03:42:45.831Z
+   let fechaTratada = removeCharacterFromString(fechaActual);
+      
+   let urlCompleta = url.concat(CuenCod).concat('-').concat(ObjId).concat('-').concat(fechaTratada);
+   console.log(`la urlCompleta es : ${urlCompleta}`)
 
+   let url2='frontsmartbar.netlify.app';
+   let urlCompleta2= url2.concat('?CuenCod=').concat(CuenCod).concat('-').concat(ObjId).concat('-').concat(fechaTratada);;
+   console.log(`La url completa de prueba es : ${urlCompleta2} `)
+
+   
    qrcode.makeCode(url);
-
    modalClose.addEventListener('click', (e) => {
       qrcode.clear();
       e.preventDefault();
@@ -334,6 +356,21 @@ const generarQr = objeto => {
 
 
 
+
+
+const removeCharacterFromString = (dataString) => { 
+   newWord = dataString.replace(/-/g, ''); 
+ let cadenaFinal= removeCharacterFromString2(newWord);
+ return cadenaFinal
+} 
+
+const removeCharacterFromString2 = (dataString) => {     
+newWord = dataString.replace(/:/g, ''); 
+let cadenaSinT= newWord.replace('T','')
+let posicionACortar=cadenaSinT.indexOf('.');
+let CadenaFinal=cadenaSinT.slice(0,14);
+return CadenaFinal;
+} 
 
 
 
