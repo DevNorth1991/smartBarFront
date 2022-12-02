@@ -302,26 +302,6 @@ const generarEvent = e => {
 
 
 
-
-
-/*Json para poder pedir pedidos 
-
-{"CuenCod":"MI1-1-20221014170721",
-"ObjId":1,
-"ItemsMenu":[{"ItemMenuId":10,"Cantidad":2},
-            {"ItemMenuId":46,"Cantidad":1},
-            {"ItemMenuId":47,"Cantidad":1}]}
-*/
-
-
-//watsapp me ---->  https://wa.me/+542474512011?text=frontsmartbar.netlify.app
-//url para codigo qr file:///D:/BackUpIssd/TESIS/FrontendSmartBarWeb/WebSmartBar/index.html?CuenCod=MI11
-
-//var qrcode = new QRCode(contenedorQr)
-//otras propiedades de la libreria qrCode
-// qrcode.clear(); // clear the code.
-// qrcode.makeCode("http://naver.com"); // make another code
-
 var qrcode = new QRCode(contenedorQr)
 
 const generarQr = objeto => {
@@ -330,21 +310,17 @@ const generarQr = objeto => {
    modal.classList.add("modal--show");
    // qrcode.clear();
 
-   let url = "https://wa.me/+542474512011?text=D:/BackUpIssd/TESIS/FrontendSmartBarWeb/WebSmartBar/index.html?CuenCod="
+   let url = "https://wa.me/+542474512011?text=frontsmartbar.netlify.app/?CuenCod="
    let CuenCod = objeto.querySelector('.title-card').textContent;
    let ObjId = objeto.querySelector('.idMesa').textContent;
-   let fechaActual = new Date().toISOString();//2022-11-20T03:42:45.831Z
+   let ampersand="%26ObjId=";
+   let fechaActual = new Date().toISOString(); //2022-11-20T03:42:45.831Z
    let fechaTratada = removeCharacterFromString(fechaActual);
       
-   let urlCompleta = url.concat(CuenCod).concat('-').concat(ObjId).concat('-').concat(fechaTratada);
+   let urlCompleta = url.concat(CuenCod).concat('-').concat(ObjId).concat('-').concat(fechaTratada).concat(ampersand).concat(ObjId)
    console.log(`la urlCompleta es : ${urlCompleta}`)
 
-   let url2='frontsmartbar.netlify.app';
-   let urlCompleta2= url2.concat('?CuenCod=').concat(CuenCod).concat('-').concat(ObjId).concat('-').concat(fechaTratada);;
-   console.log(`La url completa de prueba es : ${urlCompleta2} `)
-
-   
-   qrcode.makeCode(url);
+   qrcode.makeCode(urlCompleta);
    modalClose.addEventListener('click', (e) => {
       qrcode.clear();
       e.preventDefault();
@@ -355,11 +331,8 @@ const generarQr = objeto => {
 }
 
 
-
-
-
 const removeCharacterFromString = (dataString) => { 
-   newWord = dataString.replace(/-/g, ''); 
+   newWord = dataString.replace(/-/g,''); 
  let cadenaFinal= removeCharacterFromString2(newWord);
  return cadenaFinal
 } 
@@ -368,7 +341,7 @@ const removeCharacterFromString2 = (dataString) => {
 newWord = dataString.replace(/:/g, ''); 
 let cadenaSinT= newWord.replace('T','')
 let posicionACortar=cadenaSinT.indexOf('.');
-let CadenaFinal=cadenaSinT.slice(0,14);
+let CadenaFinal=cadenaSinT.slice(0,posicionACortar);
 return CadenaFinal;
 } 
 

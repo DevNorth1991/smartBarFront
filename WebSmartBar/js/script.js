@@ -7,6 +7,7 @@
 
 const apiItemMenus = "http://localhost/SmartBarApi/clases/GetResponse/ConsultarItemsMenu.php";
 
+const insertPedido= "http://localhost/SmartBarApi/Clases/PostResponse/InsertarPedidoDetalle.php"
 
 //templates menu
 const menu = document.querySelector('.menu');
@@ -301,12 +302,13 @@ const setCarrito = objeto => {
    //creamos el objeto item Menu
    const producto = {
 
-      id: objeto.querySelector('.btnAdd').dataset.id,
+      id: parseInt(objeto.querySelector('.btnAdd').dataset.id,10),
       title: objeto.querySelector('.name').textContent,
       precio: objeto.querySelector('.price').textContent,
       cantidad: 1 //la inicializamos en 1 despues hacemos la logica de aumentar can tidad cada vez que se clickea 
 
    }
+   console.log(`el id del producto es ${producto .id}`)
    console.log(producto)
 
    if (carrito.hasOwnProperty(producto.id)) {
@@ -319,6 +321,7 @@ const setCarrito = objeto => {
 
    carrito[producto.id] = { ...producto }
 
+   console.log(carrito);
    pintarCarrito()
 }
 
@@ -457,19 +460,85 @@ const btnAccion = e => {
 }
 
 
+/*Json para poder pedir pedidos 
+
+{"CuenCod":"MI1-1-20221014170721",
+"ObjId":1,
+"ItemsMenu":[{"ItemMenuId":10,"Cantidad":2},
+            {"ItemMenuId":46,"Cantidad":1},
+            {"ItemMenuId":47,"Cantidad":1}]}
+*/
 
 
+const btnEnviar = document.getElementById("btnEnviar");
+
+btnEnviar.addEventListener('click', () => {
+
+   enviarPedido(carrito);
+
+})
 
 
+const enviarPedido = (objeto) => {
+   let ItemsMenu = [];
+   
 
+   //Obtenemos parametros de la Url para Configurar el Objeto pedido 
 
+   let queryStrings = new URLSearchParams(window.location.search);
+   let parametrosGet =Object.fromEntries(queryStrings.entries());
 
+  // Declare three variables:
+let CuenCod = parametrosGet.CuenCod;
 
+let ObjId=parseInt(parametrosGet.ObjId);
+
+   Object.values(objeto).forEach(element => {
+
+      const { id: ItemMenuId, cantidad: Cantidad } = element
+
+      let item = {
+         ItemMenuId,
+         Cantidad
+      }
+
+      ItemsMenu.push(item);
+
+   })
+
+   const pedido = {
+
+      CuenCod,
+      ObjId,
+      ItemsMenu
+
+   }
+   console.log(JSON.stringify(pedido));
+
+// datos mandados con la solicutud POST
+ 
+
+ fetch(insertPedido, {
+   method: "POST",
+   body: JSON.stringify(pedido),
+
+   
+   headers: {"Content-type": "application/json; charset=UTF-8"}
+ })
+ .then(response => response.json()) 
+ .then(json => console.log(json))
+ .catch(err => console.log(err));
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
 
    getMenuItems();
+     //Obtenemos parametros de la Url para Configurar el Objeto pedido 
+
+     let queryStrings = new URLSearchParams(window.location.search);
+     let parametrosGet =Object.fromEntries(queryStrings.entries());
+     console.log(parametrosGet);
 
    if (localStorage.getItem('carrito')) {
 
