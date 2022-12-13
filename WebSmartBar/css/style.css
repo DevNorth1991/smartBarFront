@@ -228,7 +228,7 @@ section {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-
+/*****************************************Inicio estilos carrito ****************************************************************************************/
 
 .carrito{
 
@@ -256,9 +256,9 @@ section {
     font-size: 2.5rem;
     text-align: center;
     table-layout: fixed;
-  width: 100%;
-   border-collapse: collapse;
-  border: 3px solid rgb(135, 130, 135);
+    width: 100%;
+    border-collapse: collapse;
+     border: 3px solid rgb(135, 130, 135);
   
 }
 
@@ -297,6 +297,12 @@ section {
 }
 
 
+
+
+
+
+
+/********************       fin estilos table carrrito       ******************/
 
 .home {
     margin-top: 7rem;
@@ -696,7 +702,7 @@ section {
 
 .footer {
     text-align: center;
-    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#000));
+    /* background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#000)); */
     background: linear-gradient(transparent, #000);
 }
 
@@ -716,53 +722,8 @@ section {
 }
 
 
-/* *****************************Dashboard style****************************** */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* *****************************END Dashboard style****************************** */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*************************media queries *********************/
 @media (max-width: 1200px) {
     .header {
         padding: 3rem;
@@ -859,6 +820,33 @@ responsive login */
     .home .content h3 {
         font-size: 2.5rem;
     }
+
+
+    .carrito .content .table tr>th:first-child{
+
+        display: none;
+        
+        }
+
+        .carrito .content .table{
+
+            font-size: 1.5rem;
+            text-align: center;
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+             border: 3px solid rgb(135, 130, 135);
+          
+        }
+
+        .carrito .content .table,th,td{
+
+            border: 1px solid white;
+
+        }
+
+
+
 }
 
 @media (max-width: 450px) {

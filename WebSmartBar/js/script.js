@@ -7,7 +7,7 @@
 
 const apiItemMenus = "http://localhost/SmartBarApi/clases/GetResponse/ConsultarItemsMenu.php";
 
-const insertPedido= "http://localhost/SmartBarApi/Clases/PostResponse/InsertarPedidoDetalle.php"
+const insertPedido = "http://localhost/SmartBarApi/Clases/PostResponse/InsertarPedido.php"
 
 //templates menu
 const menu = document.querySelector('.menu');
@@ -17,7 +17,7 @@ const cardContainerDrinks_2 = document.getElementById('container-drinks-2');
 const cardContainerPostres = document.getElementById('container-postres');
 
 
-const tableResumeCarrito=document.querySelector('.carrito')
+const tableResumeCarrito = document.querySelector('.carrito')
 const templateCard = document.getElementById('template-card').content
 const templateFooter = document.getElementById('template-footer').content
 const templateCarrito = document.getElementById('template-carrito').content
@@ -195,15 +195,15 @@ const updateIcons = (cantidad) => {
 
 const showTable = (cantidad) => {
 
-if(cantidad == 0){
+   if (cantidad == 0) {
 
-   tableResumeCarrito.style.display = "none";
+      tableResumeCarrito.style.display = "none";
 
-}else{
+   } else {
 
-   tableResumeCarrito.style.display = "";
-   tableResumeCarrito.classList.add('carrito');
-}
+      tableResumeCarrito.style.display = "";
+      tableResumeCarrito.classList.add('carrito');
+   }
 
 
 }
@@ -302,13 +302,13 @@ const setCarrito = objeto => {
    //creamos el objeto item Menu
    const producto = {
 
-      id: parseInt(objeto.querySelector('.btnAdd').dataset.id,10),
+      id: parseInt(objeto.querySelector('.btnAdd').dataset.id, 10),
       title: objeto.querySelector('.name').textContent,
       precio: objeto.querySelector('.price').textContent,
       cantidad: 1 //la inicializamos en 1 despues hacemos la logica de aumentar can tidad cada vez que se clickea 
 
    }
-   console.log(`el id del producto es ${producto .id}`)
+   console.log(`el id del producto es ${producto.id}`)
    console.log(producto)
 
    if (carrito.hasOwnProperty(producto.id)) {
@@ -370,21 +370,21 @@ const pintarFooter = () => {
    if (Object.keys(carrito).length === 0) {
       //aqui como solo haremos una linea en html podemos usar template string 
       showCounter.textContent = 0;
-      tableResumeCarrito.style.display="none"
+      tableResumeCarrito.style.display = "none"
       footer.innerHTML = `<th scope="row" colspan="5"></th>`;//reiniciaps el footer
 
       return;
 
    }
 
- 
+
    const ncantidad = Object.values(carrito).reduce((accumulador, { cantidad }) => accumulador + cantidad, 0)//recorda que Object.values no spermite utilizar todas las uncionalidades de un array en una coleccion de objetos
    updateIcons(ncantidad);
    showTable(ncantidad)
    const nPrecio = Object.values(carrito).reduce((acc, { cantidad, precio }) => acc + cantidad * precio, 0)
 
 
-   templateFooter.querySelectorAll('td')[0].textContent = ncantidad;
+   templateFooter.querySelectorAll('td')[1].textContent = ncantidad;
    templateFooter.querySelector('span').textContent = nPrecio;
 
    //una vez que tenemos nuestro template tene,os que clonarlo 
@@ -481,18 +481,20 @@ btnEnviar.addEventListener('click', () => {
 
 const enviarPedido = (objeto) => {
    let ItemsMenu = [];
-   
+
 
    //Obtenemos parametros de la Url para Configurar el Objeto pedido 
 
    let queryStrings = new URLSearchParams(window.location.search);
-   let parametrosGet =Object.fromEntries(queryStrings.entries());
+   let parametrosGet = Object.fromEntries(queryStrings.entries());
 
-  // Declare three variables:
-let CuenCod = parametrosGet.CuenCod;
+   // Declare three variables:
+   let CuenCod = parametrosGet.CuenCod;
 
-let ObjId=parseInt(parametrosGet.ObjId);
+   let ObjId = parseInt(parametrosGet.ObjId);
 
+
+   // desestructuramos el carrito para armar el array de items 
    Object.values(objeto).forEach(element => {
 
       const { id: ItemMenuId, cantidad: Cantidad } = element
@@ -506,39 +508,38 @@ let ObjId=parseInt(parametrosGet.ObjId);
 
    })
 
-   const pedido = {
+   const ped = {
 
       CuenCod,
       ObjId,
       ItemsMenu
 
    }
-   console.log(JSON.stringify(pedido));
 
-// datos mandados con la solicutud POST
- 
+   // datos mandados con la solicutud POST
 
- fetch(insertPedido, {
-   method: "POST",
-   body: JSON.stringify(pedido),
 
-   
-   headers: {"Content-type": "application/json; charset=UTF-8"}
- })
- .then(response => response.json()) 
- .then(json => console.log(json))
- .catch(err => console.log(err));
+   fetch(insertPedido, {
+      method: "POST",
+      body: JSON.stringify(ped),
+
+
+      headers: { "Content-type": "application/json; charset=UTF-8" }
+   })
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
 
    getMenuItems();
-     //Obtenemos parametros de la Url para Configurar el Objeto pedido 
+   //Obtenemos parametros de la Url para Configurar el Objeto pedido 
 
-     let queryStrings = new URLSearchParams(window.location.search);
-     let parametrosGet =Object.fromEntries(queryStrings.entries());
-     console.log(parametrosGet);
+   let queryStrings = new URLSearchParams(window.location.search);
+   let parametrosGet = Object.fromEntries(queryStrings.entries());
+   console.log(parametrosGet);
 
    if (localStorage.getItem('carrito')) {
 
