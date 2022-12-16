@@ -13,9 +13,9 @@ const menuBtnDash = document.getElementById("menu-btn-dash");
 const closeBtnDash = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
 const containerTableQr = document.querySelector(".table-container");
-const modal=document.querySelector(".modal");
-const modalClose=document.querySelector('.modal_close');
-const contenedorQr=document.querySelector('.qr_container');
+const modal = document.querySelector(".modal");
+const modalClose = document.querySelector('.modal_close');
+const contenedorQr = document.querySelector('.qr_container');
 
 
 const templateCardTable = document.getElementById("templateCardTable").content
@@ -183,6 +183,7 @@ const getMesas = async () => {
          console.log(data);
          let arrayMesasLibres = [];
          let arrayMesasRservadas = [];
+         let arrayMesasOcupadas = [];
 
          arrayMesasLibres = [...filterMesa(data, "Libre")];
          console.log(arrayMesasLibres);
@@ -190,7 +191,10 @@ const getMesas = async () => {
          arrayMesasRservadas = [...filterMesa(data, "Reservado")];
          console.log(arrayMesasRservadas);
 
-         arrayMesasCombined = arrayMesasLibres.concat(arrayMesasRservadas);
+         arrayMesasOcupadas = [...filterMesa(data, "Ocupado")];
+         console.log(arrayMesasOcupadas);
+
+         arrayMesasCombined = arrayMesasLibres.concat(arrayMesasRservadas).concat(arrayMesasOcupadas);
 
          // console.log(arrayMesasCombined);
          pintarCardTables(arrayMesasCombined);
@@ -234,6 +238,9 @@ const filterMesa = (array, key) => {
       case 'Reservado':
          arrayFilter = array.filter(e => e.ObjEs_Descripcion == "Reservado")
          break;
+      case 'Ocupado':
+         arrayFilter = array.filter(e => e.ObjEs_Descripcion == "Ocupado")
+         break;
 
       default:
          console.log("No existe categoria");
@@ -257,12 +264,16 @@ const pintarCardTables = (data) => {
       templateCardTable.querySelector('.title-card').textContent = mesa.Obj_Codigo;
       templateCardTable.querySelector('.footer-card').textContent = `CAP.${mesa.Obj_Capacidad}`;
       templateCardTable.querySelector('.idMesa').textContent = mesa.Obj_Id;
-   
+
 
       if (mesa.ObjEs_Descripcion == "Reservado") {
 
          templateCardTable.querySelector("div.libre").classList.add("reservada");
 
+
+      } else if (mesa.ObjEs_Descripcion == "Ocupado") {
+
+         templateCardTable.querySelector("div.libre").classList.add("ocupada");
 
       }
       const clone = templateCardTable.cloneNode(true);
@@ -281,7 +292,7 @@ const pintarCardTables = (data) => {
 
 containerTableQr.addEventListener('click', (e) => {
 
-   
+
    if (e.target.classList.contains('sales')) {
 
       console.log(e.target.classList);//de esta manera con solo un addEven Listener detectamos cualquier Click
@@ -306,17 +317,116 @@ var qrcode = new QRCode(contenedorQr)
 
 const generarQr = objeto => {
 
+   console.log('este es el objeto que recibe el modal generar qr')
    console.log(objeto)
+
+   let ObjId = objeto.querySelector('.idMesa').textContent;
+
+   if (objeto.classList.contains("ocupada")) {
+
+      console.log('es una mesa ocupada')
+
+      const urlGetCuenById="http://localhost/SmartBarApi/Clases/GetResponse/ConsultarMesaStatusCuentaByIdMesa.php?ObjId=1";
+
+      /*aqui hariamos la consulta fetch de si ya tiene una cuenta abierta y si tienen pedidos abiertos*/
+
+      /*
+      
+      const url = 'https://mi-sitio-web.com/api/recursos'; // URL de la API
+
+const params = {
+  param1: 'valor1', // valores de los parámetros
+  param2: 'valor2'
+};
+
+fetch(url, {
+  method: 'GET', // método de la solicitud
+  headers: {
+    // cabeceras de la solicitud
+    'Content-Type': 'application/json'
+  },
+  params: new URLSearchParams(params) // parámetros de la solicitud
+})
+  .then(response => response.json()) // procesar la respuesta como JSON
+  .then(data => {
+    // aquí puedes hacer algo con los datos de la respuesta
+  })
+  .catch(error => {
+    // manejar cualquier error
+  });
+      
+      
+      
+      
+      */
+
+
+  //OTRA SOLUCION 
+
+
+  /*
+  
+  const url = 'https://mi-sitio-web.com/api/recursos'; // URL de la API
+
+const params = {
+  param1: 'valor1' // valor del parámetro
+};
+
+fetch(url, {
+  method: 'GET', // método de la solicitud
+  headers: {
+    // cabeceras de la solicitud
+    'Content-Type': 'application/json'
+  },
+  params: new URLSearchParams(params) // parámetros de la solicitud
+})
+  .then(response => response.json()) // procesar la respuesta como JSON
+  .then(data => {
+    // aquí puedes hacer algo con los datos de la respuesta
+  })
+  .catch(error => {
+    // manejar cualquier error
+  });
+En este ejemplo, estamos haciendo una solicitud GET a la URL de una API, y pasando un parámetro como parte de la solicitud. El parámetro se convierte en un objeto URLSearchParams y se pasa como una opción de params al método fetch().
+
+Cuando se recibe la respuesta de la solicitud, se procesa como un objeto JSON y luego se puede hacer algo con los datos recibidos. Si se produce algún error durante la solicitud, se maneja en el bloque catch().
+
+Espero que esto te ayude. Si tienes alguna pregunta adicional, no dudes en hacerla. ¡Buena suerte!
+
+
+
+
+
+  
+  
+  
+  */
+
+
+
+
+   }
+
+
+
+   /*Logica antes de mostrar qr si la mesa esta ocupada tiene cuenCod abierta  y tiene pedidos listos registrados o en elaboracion
+   
+   mostrar modal alternativo No se puede generar qr hasta que no se cierre la cuenta y se cancelen o entreguen los pedidos
+
+
+   */
+
+   // si esta todo bien hace lo siguiente 
+
+
    modal.classList.add("modal--show");
-   // qrcode.clear();
 
    let url = "https://wa.me/+542474512011?text=frontsmartbar.netlify.app/?CuenCod="
    let CuenCod = objeto.querySelector('.title-card').textContent;
-   let ObjId = objeto.querySelector('.idMesa').textContent;
-   let ampersand="%26ObjId=";
+   let ampersand = "%26ObjId=";
    let fechaActual = new Date().toISOString(); //2022-11-20T03:42:45.831Z
    let fechaTratada = removeCharacterFromString(fechaActual);
-      
+
    let urlCompleta = url.concat(CuenCod).concat('-').concat(ObjId).concat('-').concat(fechaTratada).concat(ampersand).concat(ObjId)
    console.log(`la urlCompleta es : ${urlCompleta}`)
 
@@ -331,19 +441,19 @@ const generarQr = objeto => {
 }
 
 
-const removeCharacterFromString = (dataString) => { 
-   newWord = dataString.replace(/-/g,''); 
- let cadenaFinal= removeCharacterFromString2(newWord);
- return cadenaFinal
-} 
+const removeCharacterFromString = (dataString) => {
+   newWord = dataString.replace(/-/g, '');
+   let cadenaFinal = removeCharacterFromString2(newWord);
+   return cadenaFinal
+}
 
-const removeCharacterFromString2 = (dataString) => {     
-newWord = dataString.replace(/:/g, ''); 
-let cadenaSinT= newWord.replace('T','')
-let posicionACortar=cadenaSinT.indexOf('.');
-let CadenaFinal=cadenaSinT.slice(0,posicionACortar);
-return CadenaFinal;
-} 
+const removeCharacterFromString2 = (dataString) => {
+   newWord = dataString.replace(/:/g, '');
+   let cadenaSinT = newWord.replace('T', '')
+   let posicionACortar = cadenaSinT.indexOf('.');
+   let CadenaFinal = cadenaSinT.slice(0, posicionACortar);
+   return CadenaFinal;
+}
 
 
 

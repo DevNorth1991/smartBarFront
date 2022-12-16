@@ -77,7 +77,7 @@
 
             <h1>Dashboard</h1>
             <div class="date">
-                <input type="date"> 
+                <input type="date">
             </div>
 
             <!-- cards vision global -->
@@ -88,7 +88,7 @@
                     <span class="material-symbols-sharp">analytics</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Sales</h3>
+                            <h3>Ventas Totales en pesos</h3>
                             <h1>$25,046</h1>
                         </div>
                         <div class="progress">
@@ -107,7 +107,7 @@
 
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 hours</small>
+                    <small class="text-muted">Ultimas 24 hs</small>
 
                 </div>
 
@@ -118,7 +118,7 @@
                     <span class="material-symbols-sharp">bar_chart</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Expenses</h3>
+                            <h3>Gastos Totales</h3>
                             <h1>$14,0168</h1>
                         </div>
                         <div class="progress">
@@ -137,7 +137,7 @@
 
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 hours</small>
+                    <small class="text-muted">Ultimas 24hs</small>
 
                 </div>
 
@@ -147,7 +147,7 @@
                     <span class="material-symbols-sharp">stacked_line_chart</span>
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Income</h3>
+                            <h3>Pedidos Totales</h3>
                             <h1>$10,046</h1>
                         </div>
                         <div class="progress">
@@ -165,7 +165,7 @@
                             </div>
                         </div>
                     </div>
-                    <small class="text-muted">Last 24 hours</small>
+                    <small class="text-muted">Ultimas 24hs</small>
 
 
                 </div>
@@ -211,12 +211,69 @@
             </div>
 
             <!-- end  insights -->
+
+            <!---------------------------------------- inicio de mesas con pedidos  --------------------------------->
             
+            <div class="vista-pedido" id="vista-pedido">
+            
+                <h1>Mesas con pedidos listos</h1>
+            
+                <div class="vista-pedidos-container">
+            
+                    <div class="card-orders">
+            
+                        <div class="nameTable">
+                            <h2>MI2test</h2>
+                        </div>
+                        <div class="nameTable">
+                            <h2>id de pedido: 2 </h2>
+                        </div>
+            
+                        <div>
+                            <!-- Rounded switch -->
+                            <p>Confirmar entrega</p>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="info">
+                            <h2>sin entregar</h2>
+                        </div>
+            
+                    </div>
+            
+            
+                    <!-- <div class="sales libre">
+                        
+                                    <div class="nameTable">
+                                        <h2 class="title-card">MI1</h2>
+                                    </div>
+                                    <div class="iconTable"></div>
+                                    <div class="capacidad">
+                                        <h2 class="footer-card">CAP.4</h2>
+                                    </div>
+                                </div> -->
+            
+                    <!-- ********end sales cards ********** -->
+            
+            
+                </div>
+            
+            
+            </div>
+
+
+
+
+            <!------------------------------------------Find de mesas con pedidos ----------------------------------->
+
+
 
             <!-- inicio de generacion de qr  -->
 
 
-            <div class="generar-qr"   id="generar-qr">
+            <div class="generar-qr" id="generar-qr">
 
                 <h1>Lista de mesas disponibles para generar QR</h1>
 
@@ -225,7 +282,7 @@
                     <!-- ********start sales cards ********** -->
 
 
-                     <!-- <div class="sales reservada">
+                    <!-- <div class="sales reservada">
                     
                         <div class="nameTable"><h2>MI2test</h2></div>
                         <div class="iconTable"></div>
@@ -242,35 +299,54 @@
                         <div class="capacidad">
                             <h2 class="footer-card">CAP.4</h2>
                         </div>
-                    </div> --> 
-     
+                    </div> -->
+
                     <!-- ********end sales cards ********** -->
-    
-    
+
+
                 </div>
-    
+
 
             </div>
-        
 
-           
 
-        <template id="templateCardTable">
 
-            <div class="sales libre">
-                <p class="idMesa"></p>
-                <div class="sales nameTable">
-                    <h2 class="title-card">MI1</h2>
+
+            <template id="templateCardTable">
+
+                <div class="sales libre">
+                    <p class="idMesa"></p>
+                    <div class="sales nameTable">
+                        <h2 class="title-card">MI1</h2>
+                        <p>Ocupar mesa</p>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        
+                    </div>
+                    <div class="sales iconTable"></div>
+                    <div class="sales capacidad">
+                        <h2 class="sales footer-card">CAP.4</h2>
+                    </div>
                 </div>
-                <div class="sales iconTable"></div>
-                <div class="sales capacidad">
-                    <h2 class="sales footer-card">CAP.4</h2>
-                </div>
-            </div>
-        </template>
+            </template>
+
+
+            <template id="templateCardTableOrders">
+
+
+               
+            </template>
+
+
+
+
+
+
 
             <!-- finde generacion de qr -->
-          
+
 
 
 
@@ -365,8 +441,8 @@
                     <div class="icon"><span class="material-symbols-outlined">shopping_cart</span></div>
                     <div class="right">
                         <div class="info">
-                                <h3>Ordenes en linea</h3>
-                                <small class="text-muted">en las ultimas 24hs.</small>
+                            <h3>Ordenes en linea</h3>
+                            <small class="text-muted">en las ultimas 24hs.</small>
                         </div>
                         <h5 class="success">+39%</h5>
                         <h3>1255</h3>
@@ -379,8 +455,8 @@
                     <div class="icon"><span class="material-symbols-sharp">app_blocking</span></div>
                     <div class="right">
                         <div class="info">
-                                <h3>Ordenes Canceladas</h3>
-                                <small class="text-muted">en las ultimas 24hs.</small>
+                            <h3>Ordenes Canceladas</h3>
+                            <small class="text-muted">en las ultimas 24hs.</small>
                         </div>
                         <h5 class="danger">-17%</h5>
                         <h3>75</h3>
@@ -393,8 +469,8 @@
                     <div class="icon"><span class="material-symbols-sharp">spatial_audio</span></div>
                     <div class="right">
                         <div class="info">
-                                <h3>Nuevos Clientes</h3>
-                                <small class="text-muted">en las ultimas 24hs.</small>
+                            <h3>Nuevos Clientes</h3>
+                            <small class="text-muted">en las ultimas 24hs.</small>
                         </div>
                         <h5 class="success">+25%</h5>
                         <h3>153</h3>
@@ -403,16 +479,12 @@
                 </div>
 
                 <div class="item add-product">
-                    
+
                     <div>
-                        <span class="material-symbols-outlined">add</span></div>
-                        <h3>Agregar vista</h3>  
+                        <span class="material-symbols-outlined">add</span>
                     </div>
-
+                    <h3>Agregar vista</h3>
                 </div>
-
-
-
 
             </div>
 
@@ -421,21 +493,26 @@
 
         </div>
 
-   <!-- ---------------------------------------------modal de Craecion de codigo qr--------------------------------------------- -->
 
-<section class="modal">
 
-    <div class="modal_container">
-
-        <img src="images/logo_smart.png" class="modal_img">
-        <h2 class="modal_title">¡¡Bienvenido!!</h2>
-        <div class="qr_container"></div>
-        <a href="#" class="modal_close">Cerrar Modal</a>
 
     </div>
 
+    <!-- ---------------------------------------------modal de Craecion de codigo qr--------------------------------------------- -->
 
-</section>
+    <section class="modal">
+
+        <div class="modal_container">
+
+            <img src="images/logo_smart.png" class="modal_img">
+            <h2 class="modal_title">¡¡Bienvenido!!</h2>
+            <div class="qr_container"></div>
+            <a href="#" class="modal_close">Cerrar Modal</a>
+
+        </div>
+
+
+    </section>
 
 
 
@@ -448,19 +525,19 @@
     <!-- <script src="js/orders.js"></script> -->
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" 
-    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
+
     <script src="js/dash_scripts.js"></script>
-    
 
 
-   
 
-  
+
+
+
 
     <script>
         AOS.init({
