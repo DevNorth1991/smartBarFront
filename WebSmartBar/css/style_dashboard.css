@@ -22,6 +22,7 @@
     --color-libre:forestgreen;
     --color-reservada: #0606f589 ;
     --color-ocupada: coral;
+    --color-cancelada:gray;
     --color-primary-variant: #111e88;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
@@ -537,8 +538,8 @@ main .vista-pedidos-container > div:hover{
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 48px;
+    height: 26px;
   }
   
   /* Hide default HTML checkbox */
@@ -555,7 +556,7 @@ main .vista-pedidos-container > div:hover{
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 3px;
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
@@ -564,10 +565,10 @@ main .vista-pedidos-container > div:hover{
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 3px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -705,6 +706,9 @@ main .vista-pedidos-container > div:hover{
     
     }
 
+    
+    
+
 
      /*================================RECENTS UPDATES================================*/
 
@@ -813,6 +817,113 @@ main .vista-pedidos-container > div:hover{
 }
 
 
+main .vista-pedidos .insights .cardQr.sales.pedidoListo .iconTable{
+    width: 100px;
+    height: 100px;
+    background: url(../images/listo.png);
+
+}
+
+
+/*************************************  vista de mesas para generar qr ******************************************/
+
+
+
+main .generar-qr .insights .cardQr.sales.libre{
+
+    background: var(--color-libre);
+}
+
+main .generar-qr .insights .cardQr.sales.libre .iconTable{
+
+    width: 100px;
+    height: 100px;
+    background: url(../images/libre.png);
+
+}
+
+
+main .generar-qr .insights .cardQr.ocupada{
+
+    background: var(--color-ocupada);
+}
+
+main .generar-qr .insights .cardQr.ocupada .iconTable{
+
+    width: 100px;
+    height: 100px;
+    background: url(../images/gentesalon.png);
+
+}
+
+main .generar-qr .insights .cardQr.reservada{
+    background: var(--color-reservada);
+}
+
+main .generar-qr .insights .cardQr.reservada .iconTable{
+    width: 100px;
+    height: 100px;
+    background: url(../images/reservado.png);
+
+}
+
+main .generar-qr .insights .cardQr.cancelada{
+    background: var(--color-cancelada);
+}
+
+main .generar-qr .insights .cardQr.cancelada .iconTable{
+
+    width: 100px;
+    height: 100px;
+    background: url(../images/tachado.png);
+
+}
+
+main .generar-qr .insights .idMesa{
+
+    display: none;
+}
+
+.cardQr .templateCardTables-accion{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+   
+}
+
+main .generar-qr .insights .cardQr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     justify-content: space-between; 
+
+}
+
+main .generar-qr .insights .cardQr .nameTable{
+
+    
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+main .generar-qr .insights .cardQr .capacidad{
+
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+
+}
+
+
 /* ======================Media queries 1 big tablets or smaller laptops========================*/
 
 @media screen and (max-width: 1200px){
@@ -876,143 +987,6 @@ main .vista-pedidos-container > div:hover{
     }
 }
 
-/******************************************Estilos para vista generar Qr***************************************/
-
-
-main .generar-qr .insights .libre{
-
-    background: var(--color-libre);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-     justify-content: space-between; 
-
-}
-
-main .generar-qr .insights .idMesa{
-
-    display: none;
-}
-
-main .generar-qr .insights .libre .nameTable{
-
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    
-
-}
-
-
-main .generar-qr .insights .libre .iconTable{
-
-
-    width: 100px;
-    height: 100px;
-    background: url(../images/libre.png);
-
-}
-
-main .generar-qr .insights .libre .capacidad{
-
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-
-    
-
-}
-
-
-/*************************************   Mesa Reservada ******************************************/
-
-
-main .generar-qr .insights .reservada{
-
-    background: var(--color-reservada);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-     justify-content: space-between; 
-
-}
-
-main .generar-qr .insights .reservada .nameTable{
-
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    
-
-}
-
-
-main .generar-qr .insights .reservada .iconTable{
-
-
-    width: 100px;
-    height: 100px;
-    background: url(../images/reservado.png);
-
-}
-
-main .generar-qr .insights .reservada .capacidad{
-
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-
-    
-
-}
-
-
-/*************************************   Mesa Ocupada ******************************************/
-
-
-main .generar-qr .insights .ocupada{
-
-    background: var(--color-ocupada);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-     justify-content: space-between; 
-
-}
-
-main .generar-qr .insights .ocupada .nameTable{
-
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    
-
-}
-
-
-main .generar-qr .insights .ocupada .iconTable{
-
-
-    width: 100px;
-    height: 100px;
-    background: url(../images/gentesalon.png);
-
-}
-
-main .generar-qr .insights .ocupada .capacidad{
-
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-
-    
-
-}
 
 
 /**********************************************Estilos modal ***********************************************/

@@ -214,53 +214,18 @@
 
             <!---------------------------------------- inicio de mesas con pedidos  --------------------------------->
             
-            <div class="vista-pedido" id="vista-pedido">
-            
-                <h1>Mesas con pedidos listos</h1>
-            
-                <div class="vista-pedidos-container">
-            
-                    <div class="card-orders">
-            
-                        <div class="nameTable">
-                            <h2>MI2test</h2>
-                        </div>
-                        <div class="nameTable">
-                            <h2>id de pedido: 2 </h2>
-                        </div>
-            
-                        <div>
-                            <!-- Rounded switch -->
-                            <p>Confirmar entrega</p>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                        <div class="info">
-                            <h2>sin entregar</h2>
-                        </div>
-            
-                    </div>
-            
-            
-                    <!-- <div class="sales libre">
-                        
-                                    <div class="nameTable">
-                                        <h2 class="title-card">MI1</h2>
-                                    </div>
-                                    <div class="iconTable"></div>
-                                    <div class="capacidad">
-                                        <h2 class="footer-card">CAP.4</h2>
-                                    </div>
-                                </div> -->
-            
-                    <!-- ********end sales cards ********** -->
-            
-            
+            <div class="vista-pedidos generar-qr" id="vista-pedidos">
+
+                <h1>Lista de mesas con pedidos listos</h1>
+
+                <div class="insights vista-pedidos-container">
+
+                   
+
+
                 </div>
-            
-            
+
+
             </div>
 
 
@@ -314,36 +279,28 @@
 
             <template id="templateCardTable">
 
-                <div class="sales libre">
+                <div class="cardQr sales" id="qrTableContainer">
                     <p class="idMesa"></p>
-                    <div class="sales nameTable">
+                    
+                    <div class="cardQr sales nameTable">
+
                         <h2 class="title-card">MI1</h2>
-                        <p>Ocupar mesa</p>
+
+                        <div class="templateCardTables-accion">
+                            <h3>Ocupar mesa</h3>    
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" class="turnStatusCheck">
                             <span class="slider round"></span>
                         </label>
+                        </div>
                         
                     </div>
-                    <div class="sales iconTable"></div>
-                    <div class="sales capacidad">
-                        <h2 class="sales footer-card">CAP.4</h2>
+                    <div class="cardQr sales iconTable"></div>
+                    <div class="cardQr sales capacidad">
+                        <h2 class="cardQr sales footer-card">CAP.4</h2>
                     </div>
                 </div>
             </template>
-
-
-            <template id="templateCardTableOrders">
-
-
-               
-            </template>
-
-
-
-
-
-
 
             <!-- finde generacion de qr -->
 
